@@ -1,0 +1,32 @@
+{
+    "name": "the-code-breaker-k/phast-auth",
+    "description": "Lightweight PHP authentication API with JWT and Stored Procedures - A minimalist, framework-free solution for secure user management",
+    "type": "project",
+    "keywords": [
+        "authentication",
+        "jwt",
+        "php",
+        "api",
+        "rest",
+        "stored-procedures",
+        "stateless-auth"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TheCodeBreakerK",
+            "email": "kelvin20mso@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
