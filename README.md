@@ -19,7 +19,7 @@
 ## Security
 
 - JWT (JSON Web Tokens) authentication
-- Password hashing with bcrypt
+- Password hashing with argon2
 - Token refresh mechanism
 - Secure HTTP headers
 - Input validation and sanitization
@@ -31,8 +31,12 @@
 - RESTful architecture
 - Proper HTTP status codes
 - Request testing with Insomnia
-- PSR-4 autoloading
+
+## Documentations
+
+- [Database Documentation](docs/DATABASE.md)
+- [API Documentation](docs/API.md)
 
 ## License
 
-MIT License
+[MIT License](LICENSE)
