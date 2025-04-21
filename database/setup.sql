@@ -48,9 +48,7 @@ BEGIN
     WHERE us.pk_user = param_pk_user AND us.boo_is_active = TRUE;
 
     IF var_user_exists = 0 THEN
-        SET msg_user_not_found = CONCAT('Error: User with ID ',
-                                        param_pk_user,
-                                        ' was not found or is inactive.');
+        SET msg_user_not_found = CONCAT('Error: User was not found.');
         SIGNAL err_user_not_found
         SET MESSAGE_TEXT = msg_user_not_found;
     ELSE
@@ -112,7 +110,8 @@ CREATE PROCEDURE IF NOT EXISTS sp_get_user_by_id (
 )
 BEGIN
     IF fc_check_user_exists(param_pk_user) THEN
-        SELECT us.txt_name,
+        SELECT us.pk_user,
+               us.txt_name,
                us.txt_email,
                us.txt_password_hash,
                us.dat_created_at,
@@ -123,6 +122,31 @@ BEGIN
         WHERE us.pk_user = param_pk_user
         AND us.boo_is_active = TRUE;
     END IF;
+END $$
+DELIMITER ;
+
+-- ==================================================
+-- STORED PROCEDURE: sp_get_password_by_email
+--
+-- Retrieves a user's password hash by email address
+-- Only returns data if user exists and is active
+--
+-- Parameters:
+--   param_txt_email: User email to retrieve password hash
+--
+-- Returns:
+--   Single column containing:
+--     - txt_password_hash: The hashed password string
+-- ==================================================
+DELIMITER $$
+CREATE PROCEDURE IF NOT EXISTS sp_get_password_by_email (
+    IN param_txt_email VARCHAR(255)
+)
+BEGIN
+    SELECT us.txt_password_hash
+    FROM tb_users us
+    WHERE us.txt_email = param_txt_email
+    AND us.boo_is_active = TRUE;
 END $$
 DELIMITER ;
 
@@ -146,7 +170,8 @@ BEGIN
     SELECT us.pk_user
     FROM tb_users us
     WHERE us.txt_email = param_txt_email
-      AND us.txt_password_hash = param_txt_password_hash;
+    AND us.txt_password_hash = param_txt_password_hash
+    And us.boo_is_active = TRUE;
 END $$
 DELIMITER ;
 
