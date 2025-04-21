@@ -1,4 +1,4 @@
-# Database Documentation - PHAST Authentication System
+# PhastAuth - Database Documentation
 
 ## Table of Contents
 1. [Setup Instructions](#setup-instructions)
